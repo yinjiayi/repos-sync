@@ -1,0 +1,42 @@
+name: Gitee repos mirror periodic job
+
+on:
+  schedule:
+    - cron:  '0 * * * *'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+
+    - name: Mirror the Gitee organization repos to Github.
+      uses: Yikun/hub-mirror-action@v1.2
+      with:
+        src: gitee/yinjiayi
+        dst: github/yinjiayi
+        dst_key: ${{ secrets.GITHUB_PRIVATE_KEY }}
+        dst_token:  ${{ secrets.GITHUB_TOKEN }}
+        account_type: user
+        timeout: 600
+        debug: true
+        force_update: false
+        static_list: "nginx"
+
+    - name: Mirror the Github organization repos to Gitee.
+      if: always()
+      uses: Yikun/hub-mirror-action@v1.2
+      with:
+        src: gitee/yinjiayi
+        dst: github/yinjiayi
+        dst_key: ${{ secrets.GITEE_PRIVATE_KEY }}
+        dst_token:  ${{ secrets.GITEE_TOKEN }}
+        account_type: user
+        timeout: 600
+        debug: true
+        force_update: false
+        static_list: "nginx"
+    - name: Debug repo owner
+      run: |
+        echo ${{ github.repository_owner }}
+        echo ${{ github.actor }}
