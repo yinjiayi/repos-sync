@@ -28,8 +28,8 @@ jobs:
       if: always()
       uses: Yikun/hub-mirror-action@v1.2
       with:
-        src: gitee/yinjiayi
-        dst: github/yinjiayi
+        src: github/yinjiayi
+        dst: gitee/yinjiayi
         dst_key: ${{ secrets.GITEE_PRIVATE_KEY }}
         dst_token:  ${{ secrets.GITEE_TOKEN }}
         account_type: user
