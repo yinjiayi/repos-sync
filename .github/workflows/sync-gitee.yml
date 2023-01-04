@@ -16,8 +16,8 @@ jobs:
       with:
         src: gitee/yinjiayi
         dst: github/yinjiayi
-        dst_key: ${{ secrets.GITHUB_PRIVATE_KEY }}
-        dst_token:  ${{ secrets.GITHUB_TOKEN }}
+        dst_key: ${{ secrets.HUB_PRIVATE_KEY }}
+        dst_token:  ${{ secrets.HUB_TOKEN }}
         account_type: user
         timeout: 600
         debug: true
